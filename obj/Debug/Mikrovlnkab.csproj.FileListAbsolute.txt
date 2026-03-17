@@ -1,0 +1,10 @@
+C:\Users\sisovsky.ondrej25\Desktop\Mikrovlnkab\bin\Debug\Mikrovlnkab.exe.config
+C:\Users\sisovsky.ondrej25\Desktop\Mikrovlnkab\bin\Debug\Mikrovlnkab.exe
+C:\Users\sisovsky.ondrej25\Desktop\Mikrovlnkab\bin\Debug\Mikrovlnkab.pdb
+C:\Users\sisovsky.ondrej25\Desktop\Mikrovlnkab\bin\Debug\Automation.BDaq4.dll
+C:\Users\sisovsky.ondrej25\Desktop\Mikrovlnkab\obj\Debug\Mikrovlnkab.csproj.AssemblyReference.cache
+C:\Users\sisovsky.ondrej25\Desktop\Mikrovlnkab\obj\Debug\Mikrovlnkab.csproj.SuggestedBindingRedirects.cache
+C:\Users\sisovsky.ondrej25\Desktop\Mikrovlnkab\obj\Debug\Mikrovlnkab.csproj.CoreCompileInputs.cache
+C:\Users\sisovsky.ondrej25\Desktop\Mikrovlnkab\obj\Debug\Mikrovlnkab.csproj.CopyComplete
+C:\Users\sisovsky.ondrej25\Desktop\Mikrovlnkab\obj\Debug\Mikrovlnkab.exe
+C:\Users\sisovsky.ondrej25\Desktop\Mikrovlnkab\obj\Debug\Mikrovlnkab.pdb
