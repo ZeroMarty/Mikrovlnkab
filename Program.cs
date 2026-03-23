@@ -43,14 +43,29 @@ namespace Mikrovlnkab
         static DeviceInformation zarizeni = new DeviceInformation();
         static InstantDoCtrl vystup = new InstantDoCtrl();
         static InstantDiCtrl vstup = new InstantDiCtrl();
-        static byte segment1 = 0b01111111;
-        static byte segment2 = 0b10111111;
-        static byte segment3 = 0b11011111;
-        static byte segment4 = 0b11101111;
-        static byte nula = 0b11100000; //nula and, zbytek - or pres nulu
-        static byte jedna = 0b11100001;
-        static byte dva = 0b11100010;
-        static byte tri = 0b11100101;
+        static byte[] segmenty = new byte[]
+        {
+            0b11101111, // segment vpravo
+            0b11011111,
+            0b10111111,
+            0b01111111 //segment vlevo
+        };
+        static byte segmentoff = 0b11110000;
+        static byte segmentnull = 0b11100000;
+        static byte[] cisla = new byte[]
+        {
+            0b11100000, 
+            0b11100001, 
+            0b11100010, 
+            0b11100011, 
+            0b11100100, 
+            0b11100101, 
+            0b11100110, 
+            0b11100111, 
+            0b11101000, 
+            0b11101001
+        };
+        static string cesta = "kod.txt";
         static byte zamekzamknout = 0b11110111;
         static byte zamekodemknout = 0b00001000;
         static byte zvukdown = 0b11111011;
@@ -59,9 +74,14 @@ namespace Mikrovlnkab
         static byte motorup = 0b00000010;
         static byte svetloup = 0b11111110;
         static byte svetlodown = 0b00000001;
-        static byte zapis = 0xff;
-        static byte zapis2 = 0xff;
-        static int cas;
+        static byte zapis = 0xff; //všeobecné výstupy
+        static byte zapis2 = 0xff; //adresa prom
+        static int kod = 0;
+        static int aktualnisegment = 0;
+        static bool segmenton = false;
+        static List <int> zamek = new List <int>();
+        static bool jekod = false;
+        
         static void Main(string[] args) //kód musí běžet neustále!
         {
             setup();
@@ -69,23 +89,97 @@ namespace Mikrovlnkab
             beh();
             while(true)
             {
-                vstup.Read(0, out byte data);
-                if((data & 1 << 4 ) == 0)
+                if(jekod == false)// zadání kódu
                 {
-                    cas++;
+                    vstup.Read(0, out byte data);
+                    if ((data & 1 << 5) == 0 && segmenton == false) //mode button -> zapnutí segmentovky.
+                    {
+                        segmenton = true;
+                        aktualnisegment = 0;
+                        zapis = (byte)(zapis & segmenty[0]);
+                        vystup.Write(0, zapis);
+                        Thread.Sleep(100);
+                    }
+                    else if ((data & 1 << 5) == 0 && segmenton == true)
+                    {
+                        segmenton = false;
+                        zapis = (byte)(zapis | segmentoff);
+                        vystup.Write(0, zapis);
+                        Thread.Sleep(100);
+                    }
+                    if (segmenton == true)
+                    {
+                        if ((data & 1 << 4) == 0) // ^ button
+                        {
+                            kod++;
+                            if (kod > 9)
+                            {
+                                kod = 0;
+                            }
+                            byte operace = nastavenisegmentu(kod);
+                            zapis2 = (byte)(zapis2 & segmentnull);
+                            zapis2 = (byte)(zapis2 | operace);
+                            vystup.Write(0, zapis2);
+                            Thread.Sleep(100);
+                        }
+                        if ((data & 1 << 3) == 0) // v button
+                        {
+                            kod--;
+                            if (kod < 0)
+                            {
+                                kod = 9;
+                            }
+                            byte operace = nastavenisegmentu(kod);
+                            zapis = (byte)(zapis & segmentnull);
+                            zapis = (byte)(zapis | operace);
+                            vystup.Write(0, zapis);
+                            Thread.Sleep(100);
+                        }
+                        if ((data & 1 << 2) == 0) //set button -> posun a nastavení čísla do kódu
+                        {
+                            aktualnisegment++;
+                            zapis = (byte)(zapis | segmentoff);
+                            zapis = (byte)(zapis & segmenty[aktualnisegment]);
+                            Thread.Sleep(100);
+                            zamek.Add(kod);
+                            kod = 0;
+                            if (aktualnisegment == 4)
+                            {
+                                using (StreamWriter text = new StreamWriter(cesta))
+                                {
+                                    foreach (int i in zamek)
+                                    {
+                                        text.Write(i);
+                                    }
+                                }
+                            }
+                        }
+                        if ((data & 1 << 0) != 0) //dveře
+                        {
+                            for (int i = 0; i <= 60000; i++)
+                            {
+                                vstup.Read(0, out byte dvere);
+                                if (dvere != 0)
+                                {
+                                    break;
+                                }
+                                else //pokud budou dveře otevřeny minutu -> zvuk
+                                {
+                                    if (i == 60000)
+                                    {
+                                        zvuk();
+                                    }
+                                    Thread.Sleep(1);
+                                }
+                            }
+                        }
+                    }
                 }
-                if((data & 1 << 3) == 0)
-                {
-                    cas--;
-                }
-                if((data & 1 << 2) == 0)
+                else if(jekod == true) //Zadání kódu
                 {
 
                 }
-                if((data & 1 << 1 ) == 0)
-                {
-
-                }
+                
             }
         }
         static void setup()
@@ -94,9 +188,13 @@ namespace Mikrovlnkab
             zarizeni.DeviceMode = AccessMode.ModeWrite;
             vystup.SelectedDevice = zarizeni;
             vstup.SelectedDevice = zarizeni;
-            zapis = (byte)(zapis & segment1 &);
+            //zapis = (byte)(zapis & segment1 &);
             vystup.Write(0, zapis);
             vystup.Write(1, zapis);
+            if(File.Exists(cesta))
+            {
+                jekod = true;
+            }
         }
         static void beh(/*int cas*/) //změnou střídy lze měnit rychlost otáčení a intenzitu světla
         {
@@ -126,15 +224,15 @@ namespace Mikrovlnkab
             zapis = (byte)(zapis | zamekodemknout | svetloup);
             vystup.Write(0,zapis);
         }
-        static void zmena()
-        {
-            
-        }
-        static void dekodovanicasu(/*data*/)
-        {
-           
-        }
         
+        
+        
+        static byte nastavenisegmentu(int cislo)
+        {
+            byte operace = cisla[cislo];
+            return operace;
+        }
+
         static void zvuk()
         {
             for (int i = 0; i < 500; i++)
