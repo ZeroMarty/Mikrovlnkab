@@ -16,7 +16,7 @@ using System.Diagnostics;
     15 - P1.2 - Zvuk
     20 - P1.3 - Zámek
     7 - P3.0 - dveřní snímač
-    14 - P3.1 - teplotní snímač
+    12 - P3.1 - výstupní klávesnice
     11 - P3.2 - set
     10 - P3.3 - v
     9 - P3.4 - ^
@@ -35,6 +35,8 @@ displej ovládej pomocí přepínání mezi segmenty.
 
 bitové hodnoty čísel na displeji - spodních 5 bitů na portu 2
 0 - 9 binárně - log.1 = cislo
+
+konzole bude použitá jako stavový řádek 
  */
 namespace Mikrovlnkab
 {
@@ -45,10 +47,11 @@ namespace Mikrovlnkab
         static InstantDiCtrl vstup = new InstantDiCtrl();
         static byte[] segmenty = new byte[]
         {
-            0b11101111, // segment vpravo
-            0b11011111,
+             // segment vpravo
+            0b01111111,
             0b10111111,
-            0b01111111 //segment vlevo
+            0b11011111,
+            0b11101111//segment vlevo
         };
         static byte segmentoff = 0b11110000;
         static byte segmentnull = 0b11100000;
@@ -86,94 +89,57 @@ namespace Mikrovlnkab
         {
             setup();
             //zvuk();
-            beh();
+            //beh();
             while(true)
             {
                 if(jekod == false)// zadání kódu
                 {
-                    vstup.Read(0, out byte data);
-                    if ((data & 1 << 5) == 0 && segmenton == false) //mode button -> zapnutí segmentovky.
+                    int a = 0; //pro vyber segmentu
+                    Console.WriteLine("Zapsání kódu \n");
+                    Console.WriteLine("5 sekund prodleva po každé číslici, je zapotřebí u každé části kódu psát jiným tlačítkem\n");
+                    for(int i = 7; i > 4; i--)
                     {
-                        segmenton = true;
-                        aktualnisegment = 0;
-                        zapis = (byte)(zapis & segmenty[0]);
+                    byte operace = zapnutisegmentu(a);
+                        a++;
+                        zapis = (byte)(zapis|segmentoff);
+                        zapis = (byte)(zapis & operace);
                         vystup.Write(0, zapis);
-                        Thread.Sleep(100);
-                    }
-                    else if ((data & 1 << 5) == 0 && segmenton == true)
-                    {
-                        segmenton = false;
-                        zapis = (byte)(zapis | segmentoff);
-                        vystup.Write(0, zapis);
-                        Thread.Sleep(100);
-                    }
-                    if (segmenton == true)
-                    {
-                        if ((data & 1 << 4) == 0) // ^ button
+                        Thread.Sleep(20);
+                        byte display = nastavenisegmentu(kod);
+                        zapis2 = (byte)(zapis2 & segmentnull);
+                        zapis2 = (byte)(zapis2 | display);
+                    zadanikodu:
+                        Stopwatch sw = new Stopwatch();
+                        sw.Start();
+                        Console.WriteLine("Měřim čas");
+                        while (sw.Elapsed.Seconds < 5)
                         {
-                            kod++;
-                            if (kod > 9)
+                            
+                            vstup.Read(0, out byte data);
+                            if ((data & 1 << 1) == 0)
                             {
-                                kod = 0;
-                            }
-                            byte operace = nastavenisegmentu(kod);
-                            zapis2 = (byte)(zapis2 & segmentnull);
-                            zapis2 = (byte)(zapis2 | operace);
-                            vystup.Write(0, zapis2);
-                            Thread.Sleep(100);
-                        }
-                        if ((data & 1 << 3) == 0) // v button
-                        {
-                            kod--;
-                            if (kod < 0)
-                            {
-                                kod = 9;
-                            }
-                            byte operace = nastavenisegmentu(kod);
-                            zapis = (byte)(zapis & segmentnull);
-                            zapis = (byte)(zapis | operace);
-                            vystup.Write(0, zapis);
-                            Thread.Sleep(100);
-                        }
-                        if ((data & 1 << 2) == 0) //set button -> posun a nastavení čísla do kódu
-                        {
-                            aktualnisegment++;
-                            zapis = (byte)(zapis | segmentoff);
-                            zapis = (byte)(zapis & segmenty[aktualnisegment]);
-                            Thread.Sleep(100);
-                            zamek.Add(kod);
-                            kod = 0;
-                            if (aktualnisegment == 4)
-                            {
-                                using (StreamWriter text = new StreamWriter(cesta))
+                                Console.WriteLine("Píšu kód");
+                                kod++;
+                                if (kod > 9)
                                 {
-                                    foreach (int i in zamek)
-                                    {
-                                        text.Write(i);
-                                    }
+                                    kod = 0;
                                 }
+                                display = nastavenisegmentu(kod);
+                                zapis2 = (byte)(zapis2 & segmentnull);
+                                zapis2 = (byte)(zapis2 | display);
+                                vystup.Write(1, zapis2);
+                                Thread.Sleep(20);
+                                Thread.Sleep(200);
+                                goto zadanikodu;
                             }
+                            
                         }
-                        if ((data & 1 << 0) != 0) //dveře
-                        {
-                            for (int i = 0; i <= 60000; i++)
-                            {
-                                vstup.Read(0, out byte dvere);
-                                if (dvere != 0)
-                                {
-                                    break;
-                                }
-                                else //pokud budou dveře otevřeny minutu -> zvuk
-                                {
-                                    if (i == 60000)
-                                    {
-                                        zvuk();
-                                    }
-                                    Thread.Sleep(1);
-                                }
-                            }
-                        }
+                        sw.Reset();
+                        zamek.Add(kod);
+                        aktualnisegment++;
+                        kod = 0;
                     }
+                    
                 }
                 else if(jekod == true) //Zadání kódu
                 {
@@ -230,6 +196,12 @@ namespace Mikrovlnkab
         static byte nastavenisegmentu(int cislo)
         {
             byte operace = cisla[cislo];
+            return operace;
+        }
+
+        static byte zapnutisegmentu(int cislo)
+        {
+            byte operace = segmenty[cislo];
             return operace;
         }
 

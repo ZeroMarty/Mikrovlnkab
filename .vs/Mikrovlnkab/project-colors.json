@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "4ef526e2-587a-4fa1-ab60-a831126d3616": {
+      "ProjectGuid": "4ef526e2-587a-4fa1-ab60-a831126d3616",
+      "DisplayName": "Mikrovlnkab",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Ostatní soubory",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 1
+}
