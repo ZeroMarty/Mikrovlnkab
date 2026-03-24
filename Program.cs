@@ -80,8 +80,6 @@ namespace Mikrovlnkab
         static byte zapis = 0xff; //všeobecné výstupy
         static byte zapis2 = 0xff; //adresa prom
         static int kod = 0;
-        static int aktualnisegment = 0;
-        static bool segmenton = false;
         static List <int> zamek = new List <int>();
         static bool jekod = false;
         
@@ -108,6 +106,7 @@ namespace Mikrovlnkab
                         byte display = nastavenisegmentu(kod);
                         zapis2 = (byte)(zapis2 & segmentnull);
                         zapis2 = (byte)(zapis2 | display);
+                        vystup.Write(1, zapis2);
                     zadanikodu:
                         Stopwatch sw = new Stopwatch();
                         sw.Start();
@@ -136,14 +135,23 @@ namespace Mikrovlnkab
                         }
                         sw.Reset();
                         zamek.Add(kod);
-                        aktualnisegment++;
                         kod = 0;
                     }
-                    
+                    using (StreamWriter writer = new StreamWriter(cesta))
+                    {
+                        foreach (int i in zamek)
+                        {
+                            writer.Write(i);
+                        }
+                    }
+                    jekod = true; 
                 }
                 else if(jekod == true) //Zadání kódu
                 {
+                    using (StreamReader reader = new StreamReader(cesta))
+                    {
 
+                    }
                 }
                 
             }
