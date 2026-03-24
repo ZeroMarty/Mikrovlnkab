@@ -125,7 +125,7 @@ namespace Mikrovlnkab
                             zapis2 = (byte)(zapis2 & segmentnull);
                             zapis2 = (byte)(zapis2 | display);
                             vystup.Write(1, zapis2);
-                        zadanikodu:
+                        
                             Stopwatch sw = new Stopwatch();
                             sw.Start();
                             Console.WriteLine("Měřim čas");
@@ -147,7 +147,7 @@ namespace Mikrovlnkab
                                     vystup.Write(1, zapis2);
                                     Thread.Sleep(20);
                                     Thread.Sleep(200);
-                                    goto zadanikodu;
+                                    sw.Restart();
                                 }
 
                             }
