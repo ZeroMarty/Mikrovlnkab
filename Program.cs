@@ -67,18 +67,19 @@ namespace Mikrovlnkab
             0b11101001
         };
         static string cesta = "kod.txt";
-        static byte zamekzamknout = 0b11110111;
-        static byte zamekodemknout = 0b00001000;
+        static byte zamekup = 0b11110111;
+        static byte zamekdown = 0b00001000;
         static byte zvukdown = 0b11111011;
         static byte zvukup = 0b00000100;
         static byte motordown = 0b11111101;
         static byte motorup = 0b00000010;
-        static byte svetloup = 0b11111110;
-        static byte svetlodown = 0b00000001;//invertuj proměnné, takhle rozpohybujou všechno
+        static byte svetlodown = 0b11111110;
+        static byte svetloup = 0b00000001;//invertuj proměnné, takhle rozpohybujou všechno
         static byte zapis = 0xff; //všeobecné výstupy
         static byte zapis2 = 0xff; //adresa prom
         static int kod = 0;
         static List <int> zamek = new List <int>();
+        static List<int> klic = new List<int>();
         static bool jekod = false;
         
         static void Main(string[] args) //kód musí běžet neustále!
@@ -163,18 +164,92 @@ namespace Mikrovlnkab
                             }
                         }
                         jekod = true;
+                        zamek.Clear();
                     }
                     else if (jekod == true) //Hádání kódu
                     {
                         int pocitadlo = 0;
                         using (StreamReader reader = new StreamReader(cesta))
                         {
-                           
+                            string kod = reader.ReadToEnd();
+                            foreach(char znak in kod)
+                            {
+                                int cislo = (int)znak;
+                                zamek.Add(cislo);
+                            }   
                         }
-                        if (pocitadlo == 3)
+                        while(jekod == true )
                         {
-                            zvuk();
+                            for(int i = 0; i < 4; i++)
+                            {
+                                kod = 0;
+                                Console.WriteLine("Hádání kódu \n");
+                                Console.WriteLine("5 sekund prodleva po každé číslici, je zapotřebí u každé části kódu psát jiným tlačítkem\n");
+                                byte operace = zapnutisegmentu(i);
+                                zapis = (byte)(zapis | segmentoff);
+                                zapis = (byte)(zapis & operace);
+                                vystup.Write(0, zapis);
+                                Thread.Sleep(20);
+                                byte display = nastavenisegmentu(kod);
+                                zapis2 = (byte)(zapis2 & segmentnull);
+                                zapis2 = (byte)(zapis2 | display);
+                                vystup.Write(1, zapis2);
+                                Stopwatch sw = new Stopwatch();
+                                sw.Start();
+                                Console.WriteLine("Měřim čas");
+                                while (sw.Elapsed.Seconds < 5)
+                                {
+
+                                    vstup.Read(0, out byte data);
+                                    if ((data & 1 << 1) == 0)
+                                    {
+                                        Console.WriteLine("Píšu kód");
+                                        kod++;
+                                        if (kod > 9)
+                                        {
+                                            kod = 0;
+                                        }
+                                        display = nastavenisegmentu(kod);
+                                        zapis2 = (byte)(zapis2 & segmentnull);
+                                        zapis2 = (byte)(zapis2 | display);
+                                        vystup.Write(1, zapis2);
+                                        Thread.Sleep(20);
+                                        Thread.Sleep(200);
+                                        sw.Restart();
+                                    }
+
+                                }
+                                sw.Reset();
+                                klic.Add(kod);
+                            }
+
+                            bool otevrise = odemknuti(klic, zamek);
+
+                            if(otevrise == true)
+                            {
+                                zapis = (byte)(zapis & zamekdown);
+                                vystup.Write(0, zapis);
+                                Thread.Sleep(50);
+                                zapis = (byte)(zapis | zamekup);
+                                vystup.Write(0, zapis);
+                                Thread.Sleep(50);
+                                klic.Clear();
+                                zamek.Clear();
+                                jekod = false;
+                            }
+                            else if(otevrise == false)
+                            {
+                                pocitadlo++;
+                                klic.Clear();
+                            }
+                            
+                            if (pocitadlo == 3)
+                            {
+                                zvuk();
+                                pocitadlo = 0;
+                            }
                         }
+                        
                     }
                 }
                 
@@ -195,11 +270,11 @@ namespace Mikrovlnkab
             {
                 jekod = true;
             }
-            Console.WriteLine($"{jekod}");
+            Console.WriteLine($"Existuje kód: {jekod}");
         }
         static void beh(/*int cas*/) //změnou střídy lze měnit rychlost otáčení a intenzitu světla
         {
-            zapis = (byte)(zapis & zamekzamknout);
+            zapis = (byte)(zapis & zamekdown);
             zapis = (byte)(zapis & svetlodown);
             vystup.Write(0, zapis);
             for (int i = 0; i < 500; i++)
@@ -222,7 +297,7 @@ namespace Mikrovlnkab
                 zapis = (byte)(zapis | motorup);
                 vystup.Write(0, zapis);
             }
-            zapis = (byte)(zapis | zamekodemknout | svetloup);
+            zapis = (byte)(zapis  | svetloup);
             vystup.Write(0,zapis);
         }
         
@@ -232,6 +307,26 @@ namespace Mikrovlnkab
         {
             byte operace = cisla[cislo];
             return operace;
+        }
+
+        static bool odemknuti(List<int> a, List<int> b)
+        {
+            int spravne = 0;
+            for(int i = 0;i<4;i++)
+            {
+                if (a[i] == b[i])
+                {
+                    spravne++;
+                }
+            }
+            if(spravne == 4)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         static byte zapnutisegmentu(int cislo)
