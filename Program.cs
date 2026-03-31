@@ -199,7 +199,6 @@ namespace Mikrovlnkab
                                 zapis2 = (byte)(zapis2 & segmentnull);
                                 zapis2 = (byte)(zapis2 | display);
                                 vystup.Write(1, zapis2);
-                                
                                 sw.Start();
                                 Console.WriteLine("Měřim čas\n");
                                 beh();
@@ -280,18 +279,17 @@ namespace Mikrovlnkab
 
         static void kontrola()
         {
-            sw.Reset();
             vstup.Read(0, out byte dveretrezoru);
             if ((dveretrezoru & 1 << 0) == 0)
             {
                 Console.WriteLine("Otevřete dveře\n");
                 while ((dveretrezoru & 1 << 0) == 0)
                 {
+                    sw.Restart();
                     vstup.Read(0, out dveretrezoru);
                     unlock();
                 }
             }
-            sw.Restart();
         }
         static void motor()
         {
