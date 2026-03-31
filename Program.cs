@@ -301,7 +301,7 @@ namespace Mikrovlnkab
             }
             Console.WriteLine($"Existuje kód: {jekod}\n");
         }
-        static void beh(/*int cas*/) //změnou střídy lze měnit rychlost otáčení a intenzitu světla
+        static void beh()
         {
             motor();
             svetlo50();
