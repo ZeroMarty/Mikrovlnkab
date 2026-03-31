@@ -97,6 +97,7 @@ namespace Mikrovlnkab
                             while((dveretrezoru & 1 << 0) == 0)
                             {
                                 vstup.Read(0, out dveretrezoru);
+                                unlock();
                             }
                         }
                         else
@@ -237,12 +238,7 @@ namespace Mikrovlnkab
                             if (otevrise == true)
                             {
                                 Console.WriteLine("\nSprávně\n");
-                                zapis = (byte)(zapis & zamekdown);
-                                vystup.Write(0, zapis);
-                                Thread.Sleep(200);
-                                zapis = (byte)(zapis | zamekup);
-                                vystup.Write(0, zapis);
-                                Thread.Sleep(200);
+                                unlock();
                                 klic.Clear();
                                 zamek.Clear();
                                 jekod = false;
@@ -271,6 +267,15 @@ namespace Mikrovlnkab
 
 
             }
+        }
+        static void unlock()
+        {
+            zapis = (byte)(zapis & zamekdown);
+            vystup.Write(0, zapis);
+            Thread.Sleep(200);
+            zapis = (byte)(zapis | zamekup);
+            vystup.Write(0, zapis);
+            Thread.Sleep(200);
         }
         static void motor()
         {
