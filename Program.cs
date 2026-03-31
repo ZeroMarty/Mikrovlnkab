@@ -118,8 +118,6 @@ namespace Mikrovlnkab
                             zapis2 = (byte)(zapis2 & segmentnull);
                             zapis2 = (byte)(zapis2 | display);
                             vystup.Write(1, zapis2);
-                            Stopwatch sw = new Stopwatch();
-                            sw.Start();
                             Console.WriteLine("Měřim čas");
                             while (sw.Elapsed.Seconds < 5)
                             {
@@ -282,7 +280,7 @@ namespace Mikrovlnkab
 
         static void kontrola()
         {
-            sw.Stop();
+            sw.Reset();
             vstup.Read(0, out byte dveretrezoru);
             if ((dveretrezoru & 1 << 0) == 0)
             {
