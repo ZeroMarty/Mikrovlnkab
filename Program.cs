@@ -160,7 +160,7 @@ namespace Mikrovlnkab
                         {
                             foreach (int i in zamek)
                             {
-                                writer.Write(i + ';');
+                                writer.Write(i);
                             }
                         }
                         jekod = true;
@@ -236,6 +236,7 @@ namespace Mikrovlnkab
                                 klic.Clear();
                                 zamek.Clear();
                                 jekod = false;
+                                File.Delete(cesta);
                             }
                             else if(otevrise == false)
                             {
