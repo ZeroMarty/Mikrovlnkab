@@ -83,7 +83,7 @@ namespace Mikrovlnkab
         static bool jekod = false;
         static Stopwatch dvere = new Stopwatch();
 
-        static void Main(string[] args) //kód musí běžet neustále!
+        static void Main(string[] args) 
         {
             setup();
             while (true)
