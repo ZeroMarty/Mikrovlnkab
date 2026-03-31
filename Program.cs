@@ -81,43 +81,30 @@ namespace Mikrovlnkab
         static List<int> zamek = new List<int>();
         static List<int> klic = new List<int>();
         static bool jekod = false;
+        static Stopwatch dvere = new Stopwatch();
 
         static void Main(string[] args) //kód musí běžet neustále!
         {
             setup();
-            //zvuk();
-            //beh();
             while (true)
             {
-                vstup.Read(0, out byte info);
-                if ((info & 1 << 0) != 0) //alarm u dveří
-                {
-                    svetlo100();
-                    Console.WriteLine("Dveře jsou otevřené");
-                    Stopwatch sw = new Stopwatch();
-                    sw.Start();
-                    while (sw.Elapsed.Seconds < 60) //potom přenastav na 60 sekund
-                    {
-                        vstup.Read(0, out info);
-                        if ((info & 1 << 0) == 0)
-                        {
-                            Console.WriteLine("Dveře jsou zavřené");
-                            svetlo0();
-                            break;
-                        }
-                    }
-                    if (sw.Elapsed.Seconds > 60)
-                    {
-                        zvuk();
-                        sw.Restart();
-                    }
-                }
                 Console.WriteLine("podmínka doběhla");
-                if ((info & 1 << 0) == 0)
-                {
+                
+                
                     if (jekod == false)// zadání kódu
                     {
-
+                        vstup.Read(0, out byte dveretrezoru);
+                        if ((dveretrezoru & 1 << 0) == 0)
+                        {
+                            Console.WriteLine("Otevřete dveře");
+                            while((dveretrezoru & 1 << 0) == 0)
+                            {
+                                vstup.Read(0, out dveretrezoru);
+                            }
+                        }
+                        else
+                        {
+                        svetlo100();
                         Console.WriteLine("Zapsání kódu \n");
                         Console.WriteLine("5 sekund prodleva po každé číslici, je zapotřebí u každé části kódu psát jiným tlačítkem\n");
                         for (int i = 0; i < 4; i++)
@@ -132,13 +119,11 @@ namespace Mikrovlnkab
                             zapis2 = (byte)(zapis2 & segmentnull);
                             zapis2 = (byte)(zapis2 | display);
                             vystup.Write(1, zapis2);
-
                             Stopwatch sw = new Stopwatch();
                             sw.Start();
                             Console.WriteLine("Měřim čas");
                             while (sw.Elapsed.Seconds < 5)
                             {
-
                                 vstup.Read(0, out byte data);
                                 if ((data & 1 << 1) == 0)
                                 {
@@ -152,15 +137,30 @@ namespace Mikrovlnkab
                                     zapis2 = (byte)(zapis2 & segmentnull);
                                     zapis2 = (byte)(zapis2 | display);
                                     vystup.Write(1, zapis2);
-                                    Thread.Sleep(20);
-                                    Thread.Sleep(200);
+                                    Thread.Sleep(220);
                                     sw.Restart();
                                 }
-
                             }
                             sw.Reset();
                             zamek.Add(kod);
                             kod = 0;
+                        }
+                        vstup.Read(0, out byte trezor);
+                        while ((trezor & 1 << 0) != 0)
+                        {
+                            dvere.Reset();
+                            dvere.Start();
+                            Console.WriteLine("Čekání na zavření dveří ");
+                            while ((trezor & 1 << 0) != 0)
+                            {
+                                vstup.Read(0, out trezor);
+                                if (dvere.Elapsed.Seconds > 60)
+                                {
+                                    dvere.Restart();
+                                    zvuk();
+                                }
+                            }
+
                         }
                         using (StreamWriter writer = new StreamWriter(cesta))
                         {
@@ -171,6 +171,8 @@ namespace Mikrovlnkab
                         }
                         jekod = true;
                         zamek.Clear();
+                    }
+                    svetlo0();
                     }
                     else if (jekod == true) //Hádání kódu
                     {
@@ -271,12 +273,13 @@ namespace Mikrovlnkab
 
                             if (pocitadlo == 3)
                             {
+                                Console.WriteLine("Špatně 3x");
                                 zvuk();
                                 pocitadlo = 0;
                             }
                         }
 
-                    }
+                    
                 }
 
 
@@ -304,6 +307,10 @@ namespace Mikrovlnkab
             if(File.Exists(cesta))
             {
                 jekod = true;
+            }
+            else
+            {
+                jekod = false;
             }
             Console.WriteLine($"Existuje kód: {jekod}");
         }
@@ -373,10 +380,10 @@ namespace Mikrovlnkab
         {
             zapis = (byte)(zapis & svetlodown);
             vystup.Write(0, zapis);
-            Thread.Sleep(50);
+            Thread.Sleep(70);
             zapis = (byte)(zapis | svetloup);
             vystup.Write(0, zapis);
-            Thread.Sleep(50);
+            Thread.Sleep(70);
         }
         static void svetlo100()
         {
@@ -388,7 +395,7 @@ namespace Mikrovlnkab
         {
             zapis = (byte)(zapis | svetloup);
             vystup.Write(0, zapis);
-            Thread.Sleep(5);
+            Thread.Sleep(50);
         }
         
     }
