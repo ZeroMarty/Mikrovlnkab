@@ -88,15 +88,12 @@ namespace Mikrovlnkab
             setup();
             while (true)
             {
-                Console.WriteLine("podmínka doběhla");
-                
-                
                     if (jekod == false)// zadání kódu
                     {
                         vstup.Read(0, out byte dveretrezoru);
                         if ((dveretrezoru & 1 << 0) == 0)
                         {
-                            Console.WriteLine("Otevřete dveře");
+                            Console.WriteLine("Otevřete dveře\n");
                             while((dveretrezoru & 1 << 0) == 0)
                             {
                                 vstup.Read(0, out dveretrezoru);
@@ -127,7 +124,7 @@ namespace Mikrovlnkab
                                 vstup.Read(0, out byte data);
                                 if ((data & 1 << 1) == 0)
                                 {
-                                    Console.WriteLine("Píšu kód");
+                                    Console.WriteLine($"Píšu kód" + kod);
                                     kod++;
                                     if (kod > 9)
                                     {
@@ -150,7 +147,7 @@ namespace Mikrovlnkab
                         {
                             dvere.Reset();
                             dvere.Start();
-                            Console.WriteLine("Čekání na zavření dveří ");
+                            Console.WriteLine("\nČekání na zavření dveří\n");
                             while ((trezor & 1 << 0) != 0)
                             {
                                 vstup.Read(0, out trezor);
@@ -186,16 +183,12 @@ namespace Mikrovlnkab
                                 zamek.Add(cislo - 48);
                             }
                         }
-                        foreach (int i in zamek)
-                        {
-                            Console.WriteLine(i);
-                        }
                         while (jekod == true)
                         {
                             for (int i = 0; i < 4; i++)
                             {
                                 Console.WriteLine("Hádání kódu \n");
-                                Console.WriteLine("5 sekund prodleva po každé číslici, je zapotřebí u každé části kódu psát jiným tlačítkem\n");
+                                Console.WriteLine("5 sekund prodleva pro každou číslici, je zapotřebí u každé části kódu psát jiným tlačítkem\n");
                                 byte operace = zapnutisegmentu(i);
                                 zapis = (byte)(zapis | segmentoff & svetlodown);
                                 zapis = (byte)(zapis & operace);
@@ -207,7 +200,7 @@ namespace Mikrovlnkab
                                 vystup.Write(1, zapis2);
                                 Stopwatch sw = new Stopwatch();
                                 sw.Start();
-                                Console.WriteLine("Měřim čas");
+                                Console.WriteLine("Měřim čas\n");
                                 beh();
                                 while (sw.Elapsed.Seconds < 5)
                                 {
@@ -221,7 +214,7 @@ namespace Mikrovlnkab
                                     vstup.Read(0, out byte data);
                                     if ((data & 1 << 1) == 0)
                                     {
-                                        Console.WriteLine("Píšu kód");
+                                        Console.WriteLine($"Píšu kód:" + kod);
                                         kod++;
                                         if (kod > 9)
                                         {
@@ -231,8 +224,7 @@ namespace Mikrovlnkab
                                         zapis2 = (byte)(zapis2 & segmentnull);
                                         zapis2 = (byte)(zapis2 | display);
                                         vystup.Write(1, zapis2);
-                                        Thread.Sleep(20);
-                                        Thread.Sleep(200);
+                                        Thread.Sleep(220);
                                         sw.Restart();
                                     }
 
@@ -241,15 +233,10 @@ namespace Mikrovlnkab
                                 klic.Add(kod);
                                 kod = 0;
                             }
-                            foreach (int i in klic)
-                            {
-                                Console.WriteLine(i);
-                            }
                             bool otevrise = odemknuti(klic, zamek);
-
                             if (otevrise == true)
                             {
-                                Console.WriteLine("Správně");
+                                Console.WriteLine("\nSprávně\n");
                                 zapis = (byte)(zapis & zamekdown);
                                 vystup.Write(0, zapis);
                                 Thread.Sleep(200);
@@ -265,7 +252,7 @@ namespace Mikrovlnkab
                             }
                             else if (otevrise == false)
                             {
-                                Console.WriteLine("Špatně");
+                                Console.WriteLine("\nŠpatně\n");
                                 pocitadlo++;
                                 klic.Clear();
                                 kod = 0;
@@ -273,7 +260,7 @@ namespace Mikrovlnkab
 
                             if (pocitadlo == 3)
                             {
-                                Console.WriteLine("Špatně 3x");
+                                Console.WriteLine("\nŠpatně 3x\n");
                                 zvuk();
                                 pocitadlo = 0;
                             }
@@ -312,7 +299,7 @@ namespace Mikrovlnkab
             {
                 jekod = false;
             }
-            Console.WriteLine($"Existuje kód: {jekod}");
+            Console.WriteLine($"Existuje kód: {jekod}\n");
         }
         static void beh(/*int cas*/) //změnou střídy lze měnit rychlost otáčení a intenzitu světla
         {
