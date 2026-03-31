@@ -82,6 +82,7 @@ namespace Mikrovlnkab
         static List<int> klic = new List<int>();
         static bool jekod = false;
         static Stopwatch dvere = new Stopwatch();
+        static Stopwatch sw = new Stopwatch();
 
         static void Main(string[] args) 
         {
@@ -122,6 +123,7 @@ namespace Mikrovlnkab
                             Console.WriteLine("Měřim čas");
                             while (sw.Elapsed.Seconds < 5)
                             {
+                                kontrola();
                                 vstup.Read(0, out byte data);
                                 if ((data & 1 << 1) == 0)
                                 {
@@ -199,7 +201,7 @@ namespace Mikrovlnkab
                                 zapis2 = (byte)(zapis2 & segmentnull);
                                 zapis2 = (byte)(zapis2 | display);
                                 vystup.Write(1, zapis2);
-                                Stopwatch sw = new Stopwatch();
+                                
                                 sw.Start();
                                 Console.WriteLine("Měřim čas\n");
                                 beh();
@@ -276,6 +278,22 @@ namespace Mikrovlnkab
             zapis = (byte)(zapis | zamekup);
             vystup.Write(0, zapis);
             Thread.Sleep(200);
+        }
+
+        static void kontrola()
+        {
+            sw.Stop();
+            vstup.Read(0, out byte dveretrezoru);
+            if ((dveretrezoru & 1 << 0) == 0)
+            {
+                Console.WriteLine("Otevřete dveře\n");
+                while ((dveretrezoru & 1 << 0) == 0)
+                {
+                    vstup.Read(0, out dveretrezoru);
+                    unlock();
+                }
+            }
+            sw.Restart();
         }
         static void motor()
         {
