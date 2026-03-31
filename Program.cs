@@ -74,9 +74,9 @@ namespace Mikrovlnkab
         static byte motordown = 0b11111101;
         static byte motorup = 0b00000010;
         static byte svetlodown = 0b11111110;
-        static byte svetloup = 0b00000001;//invertuj proměnné, takhle rozpohybujou všechno
+        static byte svetloup = 0b00000001;
         static byte zapis = 0xff; //všeobecné výstupy
-        static byte zapis2 = 0xff; //adresa prom
+        static byte zapis2 = 0xff; //Čísla na displeji
         static int kod = 0;
         static List<int> zamek = new List<int>();
         static List<int> klic = new List<int>();
