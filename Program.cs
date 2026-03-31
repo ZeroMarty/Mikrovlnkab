@@ -67,8 +67,8 @@ namespace Mikrovlnkab
             0b11101001
         };
         static string cesta = "kod.txt";
-        static byte zamekup = 0b11110111;
-        static byte zamekdown = 0b00001000;
+        static byte zamekdown = 0b11110111;
+        static byte zamekup = 0b00001000;
         static byte zvukdown = 0b11111011;
         static byte zvukup = 0b00000100;
         static byte motordown = 0b11111101;
@@ -104,7 +104,11 @@ namespace Mikrovlnkab
                             break;
                         }
                     }
-                    zvuk();
+                    if(sw.Elapsed.Seconds > 60)
+                    {
+                        zvuk();
+                        sw.Restart();
+                    }
                 }
                 Console.WriteLine("podmínka doběhla");
                 if ((info & 1 << 0) == 0)
@@ -175,14 +179,17 @@ namespace Mikrovlnkab
                             foreach(char znak in kod)
                             {
                                 int cislo = (int)znak;
-                                zamek.Add(cislo);
+                                zamek.Add(cislo - 48);
                             }   
+                        }
+                        foreach(int i in zamek)
+                        {
+                            Console.WriteLine(i);
                         }
                         while(jekod == true )
                         {
                             for(int i = 0; i < 4; i++)
                             {
-                                kod = 0;
                                 Console.WriteLine("Hádání kódu \n");
                                 Console.WriteLine("5 sekund prodleva po každé číslici, je zapotřebí u každé části kódu psát jiným tlačítkem\n");
                                 byte operace = zapnutisegmentu(i);
@@ -221,27 +228,35 @@ namespace Mikrovlnkab
                                 }
                                 sw.Reset();
                                 klic.Add(kod);
+                                kod = 0;
                             }
-
+                            foreach (int i in klic)
+                            {
+                                Console.WriteLine(i);
+                            }
                             bool otevrise = odemknuti(klic, zamek);
 
                             if(otevrise == true)
                             {
+                                Console.WriteLine("Správně");
                                 zapis = (byte)(zapis & zamekdown);
                                 vystup.Write(0, zapis);
-                                Thread.Sleep(50);
+                                Thread.Sleep(200);
                                 zapis = (byte)(zapis | zamekup);
                                 vystup.Write(0, zapis);
-                                Thread.Sleep(50);
+                                Thread.Sleep(200);
                                 klic.Clear();
                                 zamek.Clear();
                                 jekod = false;
                                 File.Delete(cesta);
+                                kod = 0;
                             }
                             else if(otevrise == false)
                             {
+                                Console.WriteLine("Špatně");
                                 pocitadlo++;
                                 klic.Clear();
+                                kod = 0;
                             }
                             
                             if (pocitadlo == 3)
