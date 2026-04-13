@@ -52,8 +52,8 @@ namespace Mikrovlnkab
             0b11101111//segment vlevo
         };
         static byte segmentoff = 0b11110000;
-        static byte segmentnull = 0b11100000;
-        static byte[] cisla = new byte[]
+        static byte segmentnull = 0b11100000; //nula
+        static byte[] cisla = new byte[] //Adresy EPROM
         {
             0b11100000,
             0b11100001,
@@ -78,8 +78,8 @@ namespace Mikrovlnkab
         static byte zapis = 0xff; //všeobecné výstupy
         static byte zapis2 = 0xff; //Čísla na displeji
         static int kod = 0;
-        static List<int> zamek = new List<int>();
-        static List<int> klic = new List<int>();
+        static List<int> zamek = new List<int>(); //list zámku
+        static List<int> klic = new List<int>(); // list klíče zadaného uživatelem 
         static bool jekod = false;
         static Stopwatch dvere = new Stopwatch();
         static Stopwatch sw = new Stopwatch();
@@ -91,7 +91,7 @@ namespace Mikrovlnkab
             {
                     if (jekod == false)// zadání kódu
                     {
-                        vstup.Read(0, out byte dveretrezoru);
+                        vstup.Read(0, out byte dveretrezoru); //Kontrola dveří
                         if ((dveretrezoru & 1 << 0) == 0)
                         {
                             Console.WriteLine("Otevřete dveře\n");
@@ -108,51 +108,51 @@ namespace Mikrovlnkab
                         Console.WriteLine("5 sekund prodleva po každé číslici, je zapotřebí u každé části kódu psát jiným tlačítkem\n");
                         for (int i = 0; i < 4; i++)
                         {
-                            byte operace = zapnutisegmentu(i);
+                            byte operace = zapnutisegmentu(i); //Metoda pro výběr operace z pole
 
-                            zapis = (byte)(zapis | segmentoff);
+                            zapis = (byte)(zapis | segmentoff); //Nejprve dá vsechny segmenty do 1 pak pomocí vybrané operace vynuluje ten potřebný
                             zapis = (byte)(zapis & operace);
                             vystup.Write(0, zapis);
                             Thread.Sleep(20);
-                            byte display = nastavenisegmentu(kod);
+                            byte display = nastavenisegmentu(kod); //funguje podobně co zapínání segmentu
                             zapis2 = (byte)(zapis2 & segmentnull);
                             zapis2 = (byte)(zapis2 | display);
                             vystup.Write(1, zapis2);
                             Console.WriteLine("Měřim čas");
-                            while (sw.Elapsed.Seconds < 5)
+                            while (sw.Elapsed.Seconds < 5) //5 sekund na segment
                             {
                                 kontrola();
                                 vstup.Read(0, out byte data);
                                 if ((data & 1 << 1) == 0)
                                 {
                                     Console.WriteLine($"Píšu kód" + kod);
-                                    kod++;
+                                    kod++; //Po stisku tkačítka přičte 1
                                     if (kod > 9)
                                     {
-                                        kod = 0;
+                                        kod = 0; //při přetečení vynuluje
                                     }
-                                    display = nastavenisegmentu(kod);
+                                    display = nastavenisegmentu(kod); //zobrazení aktuálního kódu
                                     zapis2 = (byte)(zapis2 & segmentnull);
                                     zapis2 = (byte)(zapis2 | display);
                                     vystup.Write(1, zapis2);
-                                    Thread.Sleep(220);
-                                    sw.Restart();
+                                    Thread.Sleep(220); //díky prodlevě se zmírní citlivost tlačítek
+                                    sw.Restart(); //reset stopek při zadání
                                 }
                             }
                             sw.Reset();
-                            zamek.Add(kod);
+                            zamek.Add(kod); //Přidávání částí kódu 1 po drzg
                             kod = 0;
                         }
                         vstup.Read(0, out byte trezor);
-                        while ((trezor & 1 << 0) != 0)
+                        while ((trezor & 1 << 0) != 0) //Čekáni na zavření dveří
                         {
-                            dvere.Reset();
+                            dvere.Reset();//
                             dvere.Start();
                             Console.WriteLine("\nČekání na zavření dveří\n");
                             while ((trezor & 1 << 0) != 0)
                             {
                                 vstup.Read(0, out trezor);
-                                if (dvere.Elapsed.Seconds > 60)
+                                if (dvere.Elapsed.Seconds > 60) //alarm pokud je otevřeno déle jak 60 sekund od 1. hlášení
                                 {
                                     dvere.Restart();
                                     zvuk();
@@ -160,7 +160,7 @@ namespace Mikrovlnkab
                             }
 
                         }
-                        using (StreamWriter writer = new StreamWriter(cesta))
+                        using (StreamWriter writer = new StreamWriter(cesta)) //výpis kódu do souboru
                         {
                             foreach (int i in zamek)
                             {
@@ -174,17 +174,17 @@ namespace Mikrovlnkab
                     }
                     else if (jekod == true) //Hádání kódu
                     {
-                        int pocitadlo = 0;
-                        using (StreamReader reader = new StreamReader(cesta))
+                        int pocitadlo = 0; //počítání pokusů
+                        using (StreamReader reader = new StreamReader(cesta))//čtení kódu
                         {
                             string kod = reader.ReadToEnd();
                             foreach (char znak in kod)
                             {
                                 int cislo = (int)znak;
-                                zamek.Add(cislo - 48);
+                                zamek.Add(cislo - 48); //nečte čísla ale znaky, je zapotřebí odečíst '0'
                             }
                         }
-                        while (jekod == true)
+                        while (jekod == true) //mód hádání
                         {
                             for (int i = 0; i < 4; i++)
                             {
@@ -201,8 +201,8 @@ namespace Mikrovlnkab
                                 vystup.Write(1, zapis2);
                                 sw.Start();
                                 Console.WriteLine("Měřim čas\n");
-                                beh();
-                                while (sw.Elapsed.Seconds < 5)
+                                beh(); //točení a světlo
+                                while (sw.Elapsed.Seconds < 5) //funguje stejně co hádání
                                 {
                                     beh();
                                     zapis = (byte)(zapis & motordown);
@@ -233,8 +233,8 @@ namespace Mikrovlnkab
                                 klic.Add(kod);
                                 kod = 0;
                             }
-                            bool otevrise = odemknuti(klic, zamek);
-                            if (otevrise == true)
+                            bool otevrise = odemknuti(klic, zamek); //kontrola klíče oproti zámku
+                            if (otevrise == true)//pokud správně, otevře se, smaže kód a přepne se do režimu nastavení
                             {
                                 Console.WriteLine("\nSprávně\n");
                                 unlock();
@@ -245,7 +245,7 @@ namespace Mikrovlnkab
                                 kod = 0;
                                 svetlo100();
                             }
-                            else if (otevrise == false)
+                            else if (otevrise == false) //pokud špatně, připočítá na počítadle
                             {
                                 Console.WriteLine("\nŠpatně\n");
                                 pocitadlo++;
@@ -253,7 +253,7 @@ namespace Mikrovlnkab
                                 kod = 0;
                             }
 
-                            if (pocitadlo == 3)
+                            if (pocitadlo == 3) //pokud je toto 3. neúspěšný pokus, pak alarm
                             {
                                 Console.WriteLine("\nŠpatně 3x\n");
                                 zvuk();
@@ -336,12 +336,12 @@ namespace Mikrovlnkab
 
         static bool odemknuti(List<int> a, List<int> b)
         {
-            int spravne = 0;
+            int spravne = 0; //počítadlo správných cifer
             for(int i = 0;i<4;i++)
             {
-                if (a[i] == b[i])
+                if (a[i] == b[i]) //srovnává části kódu v obou listech
                 {
-                    spravne++;
+                    spravne++; 
                 }
             }
             if(spravne == 4)
