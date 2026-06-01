@@ -1,0 +1,384 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.8 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.8">
+  <diagram name="Stránka-1" id="SpYoseEaxNSoLNaJXQPp">
+    <mxGraphModel dx="1835" dy="1365" grid="0" gridSize="12" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-1" target="pYRfcpaRlRl_38_JLGYp-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-1" value="Start" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="40" y="-100" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-3" target="pYRfcpaRlRl_38_JLGYp-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-3" value="*Prvotní nastavení" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="30" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-6" target="pYRfcpaRlRl_38_JLGYp-13">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="90" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-6" value="Existuje kód?" style="rhombus;whiteSpace=wrap;html=1;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="50" y="110" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-9" value="+" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="120" y="120" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-11" target="pYRfcpaRlRl_38_JLGYp-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-11" value="**Nastavení kódu" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="30" y="260" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-12" value="-" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="40" y="180" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-13" target="pYRfcpaRlRl_38_JLGYp-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-13" value="***Hádání kódu" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="140" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-18">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="335" y="580" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="298" y="505" />
+              <mxPoint x="335" y="506" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-18">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-18" value="Je kód správný?" style="rhombus;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="155" y="460" width="90" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-19" value="-" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="230" y="470" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-22" value="+" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="160" y="540" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="pYRfcpaRlRl_38_JLGYp-11">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="60" y="230" as="targetPoint" />
+            <mxPoint x="140" y="630" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="200" y="630" />
+              <mxPoint x="200" y="690" />
+              <mxPoint x="11" y="690" />
+              <mxPoint x="11" y="230" />
+              <mxPoint x="60" y="230" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-23" value="Odemknutí" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="140" y="600" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-28" target="pYRfcpaRlRl_38_JLGYp-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="246" y="378" as="targetPoint" />
+            <mxPoint x="380" y="625" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="420" y="625" />
+              <mxPoint x="420" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-28" value="Je toto 3. pokus?" style="rhombus;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="290" y="580" width="90" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-29" value="+" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="290" y="660" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-30" value="-" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="354" y="600" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.694;entryY=-0.016;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="pYRfcpaRlRl_38_JLGYp-13">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="222.67999999999984" y="357.77999999999975" as="targetPoint" />
+            <mxPoint x="335" y="780" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="335" y="850" />
+              <mxPoint x="440" y="850" />
+              <mxPoint x="440" y="300" />
+              <mxPoint x="223" y="300" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-32" value="Alarm" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="275" y="770" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-37" value="*:" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1438" y="437" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-38" target="pYRfcpaRlRl_38_JLGYp-39">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-38" value="Start" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1479" y="460" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-39" target="pYRfcpaRlRl_38_JLGYp-41">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-39" value="Získání informací o IO kartě" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1469" y="560" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-41" value="Vytvoření ovladačů IO karty" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1469" y="660" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-43" value="End" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1479" y="770" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-41" target="pYRfcpaRlRl_38_JLGYp-43">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-45" value="**:" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="644" y="-108" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-46">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="741" y="2" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-46" value="Start" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="691" y="-98" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-62" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-53" target="pYRfcpaRlRl_38_JLGYp-59">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="853.9999999999995" y="47" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="884" y="47" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-64" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-53" target="pYRfcpaRlRl_38_JLGYp-66">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="741" y="122" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-53" value="Stiskl za 5 sekund tlačítko?" style="rhombus;whiteSpace=wrap;html=1;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="696" y="2" width="90" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-55" value="-" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="691" y="82" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-57" value="+" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="764" y="17" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-63" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="744" y="-8" as="targetPoint" />
+            <mxPoint x="883.71" y="212" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="884" y="252" />
+              <mxPoint x="1014" y="252" />
+              <mxPoint x="1014" y="-8" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-59" value="Inkrementace cifry v kódu" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="824" y="152" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-69" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-66" target="pYRfcpaRlRl_38_JLGYp-73">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="664" y="352" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="584" y="292" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-70" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-66" target="pYRfcpaRlRl_38_JLGYp-76">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="741" y="422" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-66" value="Zbývají části kódu?" style="rhombus;whiteSpace=wrap;html=1;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="701" y="252" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-71" value="+" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="664" y="262" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-72" value="-" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="726" y="322" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-77" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-73" target="pYRfcpaRlRl_38_JLGYp-74">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-73" value="Uložení cifry" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="524" y="372" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-78" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-74" target="pYRfcpaRlRl_38_JLGYp-75">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-74" value="Vynulování" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="524" y="467" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-75">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="738" y="-8" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="584" y="682" />
+              <mxPoint x="492" y="682" />
+              <mxPoint x="492" y="-8" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-75" value="**Nastavení další cifry" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="524" y="562" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-83" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-76" target="pYRfcpaRlRl_38_JLGYp-82">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-76" value="Uložení cifry" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="681" y="467" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-80" value="End" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="691" y="652" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-82" value="Vytvoření souboru s kódem" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="681" y="562" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-84" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-82" target="pYRfcpaRlRl_38_JLGYp-80">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-85" value="***:" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1200" y="-112" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-87" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-88" target="pYRfcpaRlRl_38_JLGYp-113">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1305" y="24" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-88" value="Start" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1255" y="-82" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-89" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-91" target="pYRfcpaRlRl_38_JLGYp-95">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1417.9999999999995" y="115" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1350" y="180" />
+              <mxPoint x="1448" y="180" />
+            </Array>
+            <mxPoint x="1368" y="180" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-90" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-91" target="pYRfcpaRlRl_38_JLGYp-98">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1305" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-91" value="Stiskl za 5 sekund tlačítko?" style="rhombus;whiteSpace=wrap;html=1;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="138" width="90" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-92" value="-" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1255" y="150" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-93" value="+" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1344" y="150" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-94" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1308" y="132" as="targetPoint" />
+            <mxPoint x="1447.71" y="280" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="1448" y="320" />
+              <mxPoint x="1578" y="320" />
+              <mxPoint x="1578" y="132" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-95" value="Inkrementace cifry v kódu" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="1388" y="220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-98" target="pYRfcpaRlRl_38_JLGYp-102">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1228" y="420" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1148" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-97" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-98" target="pYRfcpaRlRl_38_JLGYp-108">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1305" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-98" value="Zbývají části kódu?" style="rhombus;whiteSpace=wrap;html=1;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="1265" y="320" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-99" value="+" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1228" y="330" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-100" value="-" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="390" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-101" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-102" target="pYRfcpaRlRl_38_JLGYp-104">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-102" value="Uložení cifry" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1088" y="440" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-103" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-104" target="pYRfcpaRlRl_38_JLGYp-106">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-104" value="Vynulování" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1088" y="535" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-105" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-106">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1302" y="132" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1148" y="750" />
+              <mxPoint x="1056" y="750" />
+              <mxPoint x="1056" y="132" />
+              <mxPoint x="1302" y="132" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-106" value="**Nastavení další cifry" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1088" y="630" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-107" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-108">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1305.0000000000005" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-108" value="Uložení cifry" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1245" y="535" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-109" value="End" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1255" y="768" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-111" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-116" target="pYRfcpaRlRl_38_JLGYp-109">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1305" y="720" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-115" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pYRfcpaRlRl_38_JLGYp-113" target="pYRfcpaRlRl_38_JLGYp-91">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-113" value="Čtení souboru s kódem" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1245" y="28" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pYRfcpaRlRl_38_JLGYp-116" value="Porovnání kódů" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1245" y="630" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
